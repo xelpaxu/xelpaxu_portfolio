@@ -2,6 +2,7 @@ import TopBar from "./components/TopBar.jsx";
 import MainSideBar from "./components/MainSideBar.jsx";
 import ExplorerSideBar from "./components/ExplorerSideBar.jsx";
 import TopBarNavigator from "./components/TopBarNavigator.jsx";
+import Home from "./components/home/Home.jsx";
 import { useState } from "react";
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
 
   // Simple content mapping for demonstration
   const fileContents = {
-    "home.jsx": <div className="p-8 text-white">Home.jsx content</div>,
+    "home.jsx": <Home />,
     "projects.html": <div className="p-8 text-white">Projects.html content</div>,
     "contact.css": <div className="p-8 text-white">Contact.css content</div>,
     "skills.js": <div className="p-8 text-white">Skills.js content</div>,
