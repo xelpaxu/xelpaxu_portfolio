@@ -5,9 +5,9 @@ import { VscClose } from "react-icons/vsc";
 export default function TopBarNavigator({ activeFile, setActiveFile }) {
   const tabs = [
     { name: "home.jsx", icon: <FaReact size={14} className="text-[#4ec9b0]" /> },
-    { name: "about.html", icon: <FaHtml5 size={14} className="text-[#e37933]" /> },
+    { name: "projects.html", icon: <FaHtml5 size={14} className="text-[#e37933]" /> },
     { name: "contact.css", icon: <FaCss3Alt size={14} className="text-[#0db9d7]" /> },
-    { name: "projects.js", icon: <SiJavascript size={14} className="text-[#dcdcaa]" /> },
+    { name: "skills.js", icon: <SiJavascript size={14} className="text-[#dcdcaa]" /> },
     { name: "github.md", icon: <SiMarkdown size={14} className="text-[#519aba]" /> },
   ];
 
@@ -23,9 +23,9 @@ export default function TopBarNavigator({ activeFile, setActiveFile }) {
               : "text-[#cccccc] hover:bg-[#2a2d2e]"
           }`}
         >
-          {/* Active top line */}
+          {/* Active top line - absolutely positioned at top of tab */}
           {activeFile === tab.name && (
-            <span className="absolute top-0 left-0 w-full h-[2px] bg-[#4ec9b0]"></span>
+            <span className="absolute top-0 left-0 w-full h-[2px] bg-[#4ec9b0]" style={{zIndex:2}}></span>
           )}
 
           {tab.icon}

@@ -6,13 +6,15 @@ import { SiJavascript, SiMarkdown } from "react-icons/si";
 export default function TopBar() {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [showTerminalDropdown, setShowTerminalDropdown] = useState(false);
+  const [showTerminal, setShowTerminal] = useState(false);
 
   // Files with icons
   const files = [
     { name: "home.jsx", icon: <FaReact size={16} className="text-[#4ec9b0]" /> },
-    { name: "about.html", icon: <FaHtml5 size={16} className="text-[#e37933]" /> },
+    { name: "projects.html", icon: <FaHtml5 size={16} className="text-[#e37933]" /> },
     { name: "contact.css", icon: <FaCss3 size={16} className="text-[#0db9d7]" /> },
-    { name: "projects.js", icon: <SiJavascript size={16} className="text-[#dcdcaa]" /> },
+    { name: "skills.js", icon: <SiJavascript size={16} className="text-[#dcdcaa]" /> },
     { name: "github.md", icon: <SiMarkdown size={16} className="text-[#519aba]" /> },
   ];
 
@@ -36,22 +38,28 @@ export default function TopBar() {
         </div>
 
         {/* Menu */}
-        <nav className="flex items-center gap-0 text-sm text-white">
-          {[
-            "File",
-            "Edit",
-            "Selection",
-            "View",
-            "Go",
-            "Run",
-            "Terminal",
-            "Help",
-          ].map((item) => (
+        <nav className="flex items-center gap-0 text-sm text-white relative">
+          {["File", "Edit", "Selection", "View", "Go", "Run", "Terminal", "Help"].map((item) => (
             <span
               key={item}
-              className="cursor-pointer hover:bg-gray-700 px-3 py-1 rounded transition"
+              className="cursor-pointer hover:bg-gray-700 px-3 py-1 rounded transition relative"
+              onClick={item === "Terminal" ? () => setShowTerminalDropdown((v) => !v) : undefined}
             >
               {item}
+              {/* Dropdown for Terminal */}
+              {item === "Terminal" && showTerminalDropdown && (
+                <div className="absolute left-0 top-full mt-1 bg-[#23272e] border border-gray-700 rounded shadow-lg z-50 min-w-[140px]">
+                  <div
+                    className="px-4 py-2 hover:bg-gray-800 cursor-pointer"
+                    onClick={() => {
+                      setShowTerminal(true);
+                      setShowTerminalDropdown(false);
+                    }}
+                  >
+                    New Terminal
+                  </div>
+                </div>
+              )}
             </span>
           ))}
         </nav>
@@ -116,6 +124,19 @@ export default function TopBar() {
           )}
         </div>
       </div>
+
+      {/* Terminal area (simple placeholder) */}
+      {showTerminal && (
+        <div className="absolute left-1/2 top-full mt-2 transform -translate-x-1/2 w-[600px] bg-[#23272e] border border-gray-700 rounded shadow-lg z-50 p-4 text-white text-xs">
+          <div className="flex justify-between items-center mb-2">
+            <span>Terminal - xelpaxu</span>
+            <button className="text-gray-400 hover:text-white" onClick={() => setShowTerminal(false)}>
+              ×
+            </button>
+          </div>
+          <div className="bg-black p-2 rounded text-green-400 font-mono">$ echo Hello Terminal!</div>
+        </div>
+      )}
     </div>
   );
 }

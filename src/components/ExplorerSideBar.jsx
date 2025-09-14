@@ -5,9 +5,9 @@ import { SiJavascript, SiMarkdown } from "react-icons/si";
 export default function ExplorerSideBar({ activeFile, setActiveFile }) {
   const files = [
     { name: "home.jsx", icon: <FaReact size={18} className="text-[#4ec9b0]" /> },
-    { name: "about.html", icon: <FaHtml5 size={18} className="text-[#e37933]" /> },
+    { name: "projects.html", icon: <FaHtml5 size={18} className="text-[#e37933]" /> },
     { name: "contact.css", icon: <FaCss3 size={18} className="text-[#0db9d7]" /> },
-    { name: "projects.js", icon: <SiJavascript size={18} className="text-[#dcdcaa]" /> },
+    { name: "skills.js", icon: <SiJavascript size={18} className="text-[#dcdcaa]" /> },
     { name: "github.md", icon: <SiMarkdown size={18} className="text-[#519aba]" /> },
   ];
 
