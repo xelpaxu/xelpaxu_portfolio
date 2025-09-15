@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";  // ⬅️ added useEffect + useRef
+import { useEffect, useRef, useState } from "react"; 
 import { Search } from "lucide-react";
 import { FaReact, FaHtml5, FaCss3 } from "react-icons/fa";
 import { SiJavascript, SiMarkdown } from "react-icons/si";

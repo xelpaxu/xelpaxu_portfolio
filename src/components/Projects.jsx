@@ -18,52 +18,50 @@ const Projects = () => {
         { name: "Pygame", color: "text-green-400 border-green-400 shadow-green-400/60" },
         { name: "AI", color: "text-pink-400 border-pink-400 shadow-pink-400/60" },
       ],
-      video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      video: "https://www.youtube.com/embed/4dCCRnqYmrQ",
       repo: "https://github.com/xelpaxu/CICTZONE",
     },
     {
       id: 2,
       title: "PETMEDIX",
-      year: "2nd Year | OOP",
+      year: "2nd Year | Software Engineering 1",
       description:
         "PetMedix is a simple clinic management system built with Python, PySide6 for UI, and MariaDB for database handling.",
-      image: "/petmedix_landing.png",
+      image: "/petmedix.webp",
       techStack: [
         { name: "Python", color: "text-yellow-400 border-yellow-400 shadow-yellow-400/60" },
         { name: "PySide6", color: "text-green-400 border-green-400 shadow-green-400/60" },
         { name: "MariaDB", color: "text-blue-400 border-blue-400 shadow-blue-400/60" },
       ],
-      video: "https://www.youtube.com/embed/ysz5S6PUM-U",
+      video: "https://youtu.be/4dCCRnqYmrQ",
       repo: "https://github.com/xelpaxu/PETMEDIX",
     },
     {
       id: 3,
       title: "BIGBREW POS",
-      year: "3rd Year | AppDev",
+      year: "2nd Year | Hobby",
       description:
-        "A POS system built with Python, Flet for cross-platform UI, and MariaDB/XAMPP for database management.",
+        "A POS system made for BigBrew using with Python with Flet for cross-platform UI, and MariaDB/XAMPP for database management.",
       image: "/bigbrew_pos.png",
       techStack: [
         { name: "Python", color: "text-yellow-400 border-yellow-400 shadow-yellow-400/60" },
         { name: "Flet", color: "text-teal-400 border-teal-400 shadow-teal-400/60" },
-        { name: "MariaDB", color: "text-blue-400 border-blue-400 shadow-blue-400/60" },
-        { name: "XAMPP", color: "text-orange-400 border-orange-400 shadow-orange-400/60" },
+        { name: "MariaDB", color: "text-blue-400 border-blue-400 shadow-blue-400/60" }
       ],
-      video: "https://www.youtube.com/embed/tgbNymZ7vqY",
+      video: "https://youtu.be/4dCCRnqYmrQ",
       repo: "https://github.com/xelpaxu/BIGBREW-POS",
     },
     {
       id: 4,
       title: "YUHUM",
-      year: "3rd Year | Web Systems",
+      year: "1st Year | Web Development",
       description:
         "Flowbite helps you connect with friends, family and communities of people who share your interests.",
       image: "/yuhum_landing.png",
       techStack: [
-        { name: "WordPress", color: "text-blue-400 border-blue-400 shadow-blue-400/60" },
-        { name: "HTML5", color: "text-orange-400 border-orange-400 shadow-orange-400/60" },
-        { name: "CSS3", color: "text-sky-400 border-sky-400 shadow-sky-400/60" },
-        { name: "WooCommerce", color: "text-purple-400 border-purple-400 shadow-purple-400/60" },
+        { name: "HTML", color: "text-blue-400 border-blue-400 shadow-blue-400/60" },
+        { name: "CSS", color: "text-orange-400 border-orange-400 shadow-orange-400/60" },
+        { name: "Javascript", color: "text-sky-400 border-sky-400 shadow-sky-400/60" }
       ],
       preview: "/1st_year_website/index.html",   // ✅ Local HTML preview inside /public
       repo: "https://github.com/xelpaxu/YUHUM",
@@ -71,31 +69,28 @@ const Projects = () => {
     {
       id: 5,
       title: "SYMPTROXI",
-      year: "3rd Year | Web Systems",
+      year: "2nd Year | Data Structures and Algo",
       description:
-        "Flowbite helps you connect with friends, family and communities of people who share your interests.",
-      image: "/yuhum_landing.png",
+        "Symptroxi is a symptom-based disease prediction app built with Pygame for the UI, and Naive Bayes.",
+      image: "/symptroxi.png",
       techStack: [
-        { name: "WordPress", color: "text-blue-400 border-blue-400 shadow-blue-400/60" },
-        { name: "HTML5", color: "text-orange-400 border-orange-400 shadow-orange-400/60" },
-        { name: "CSS3", color: "text-sky-400 border-sky-400 shadow-sky-400/60" },
-        { name: "WooCommerce", color: "text-purple-400 border-purple-400 shadow-purple-400/60" },
+        { name: "Python", color: "text-blue-400 border-blue-400 shadow-blue-400/60" },
+        { name: "Pygame", color: "text-orange-400 border-orange-400 shadow-orange-400/60" },
+        { name: "DSA", color: "text-sky-400 border-sky-400 shadow-sky-400/60" }
       ],
       preview: "/1st_year_website/index.html", 
       repo: "https://github.com/xelpaxu/YUHUM",
     },
     {
       id: 6,
-      title: "FINMAN-age",
-      year: "3rd Year | Web Systems",
+      title: "ENTREMANAGER",
+      year: "2nd Year | Programming 2",
       description:
         "Flowbite helps you connect with friends, family and communities of people who share your interests.",
       image: "/yuhum_landing.png",
       techStack: [
-        { name: "WordPress", color: "text-blue-400 border-blue-400 shadow-blue-400/60" },
-        { name: "HTML5", color: "text-orange-400 border-orange-400 shadow-orange-400/60" },
-        { name: "CSS3", color: "text-sky-400 border-sky-400 shadow-sky-400/60" },
-        { name: "WooCommerce", color: "text-purple-400 border-purple-400 shadow-purple-400/60" },
+        { name: "Java", color: "text-purple-400 border-purple-400 shadow-purple-400/60" },
+        { name: "CLI", color: "text-orange-400 border-orange-400 shadow-orange-400/60" },
       ],
       preview: "/1st_year_website/index.html",
       repo: "https://github.com/xelpaxu/YUHUM",
@@ -103,12 +98,20 @@ const Projects = () => {
   ];
 
   return (
-    <section className="bg-[#1e2528] min-h-screen px-4 py-16">
+    <section id="projects" className="bg-[#1e2528] min-h-screen px-4 py-1">
       <div className="max-w-7xl mx-auto py-16">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-[0_0_12px_#38bdf8]">
-            Our Work
+          <h2
+            className="text-4xl md:text-6xl font-extrabold mb-6
+                      bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500 
+                      bg-clip-text text-transparent
+                      drop-shadow-[0_0_20px_rgba(56,189,248,0.6)]
+                      tracking-wide
+                      transition-all duration-700
+                      hover:scale-105 hover:drop-shadow-[0_0_30px_rgba(56,189,248,0.8)]"
+          >
+            PROJECTS CONTRIBUTION
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
             Projects I made together with the projects that I have contributed

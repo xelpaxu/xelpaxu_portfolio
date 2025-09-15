@@ -16,7 +16,7 @@ function App() {
 
   // Simple content mapping for demonstration
   const fileContents = {
-    "home.jsx": <Home />,
+    "home.jsx": <Home setActiveFile={setActiveFile} />,
     "projects.html": <Projects />,
     "contact.css": <Contact />,
     "skills.js": <Skills />,
