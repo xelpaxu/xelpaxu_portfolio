@@ -200,7 +200,7 @@ const Contact = () => {
                 <h3 className="text-lg font-semibold">Location</h3>
               </div>
               <div className="text-gray-300 space-y-1">
-                <p>Quezon City, Philippines</p>
+                <p>Iloilo City, Philippines</p>
                 <p>Open for remote work & collaborations</p>
               </div>
             </div>
@@ -217,11 +217,11 @@ const Contact = () => {
               </div>
               <div className="text-gray-300 space-y-2">
                 <p>Email me for collaborations or projects:</p>
-                <a href="mailto:youremail@gmail.com" className="text-blue-400 hover:text-blue-300 font-medium">
-                  youremail@gmail.com
+                <a href="mailto:nuqui.axeljohn0815@gmail.com" className="text-blue-400 hover:text-blue-300 font-medium">
+                  nuqui.axeljohn0815@gmail.com
                 </a>
                 <p>Or call me:</p>
-                <a href="tel:+639123456789" className="text-blue-400 hover:text-blue-300 font-medium">
+                <a href="tel:+639679186232 | TM" className="text-blue-400 hover:text-blue-300 font-medium">
                   +63 912 345 6789
                 </a>
               </div>
