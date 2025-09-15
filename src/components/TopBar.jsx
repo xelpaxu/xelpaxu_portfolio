@@ -74,7 +74,7 @@ export default function TopBar({ setSearchOpen, setTerminalOpen, terminalOpen, s
         <div className="w-6 h-6 rounded-full overflow-hidden">
           <a href="#">
             <img
-              src="src/assets/profile.webp"
+              src="/profile.webp"
               alt="my profile"
               className="w-full h-full object-cover"
             />
