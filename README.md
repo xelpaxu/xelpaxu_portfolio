@@ -16,13 +16,9 @@ This project serves as a professional showcase for my projects, skills, and expe
 🖥️ Tech Stack
 
 ⚛️ Frontend Framework: React
-
 ⚡ Build Tool: Vite
-
 🎨 Styling: Tailwind CSS
-
 🎭 Icons & UI: React Icons
-
 🚀 Deployment: Vercel
 
 📂 Project Structure
@@ -43,60 +39,42 @@ portfolio/
 To run this project locally:
 
 1️⃣ Clone the Repository
-
 git clone https://github.com/xelpaxu/portfolio.git
 cd portfolio
 
 
 2️⃣ Install Dependencies
-
 npm install
 
 
 3️⃣ Run Development Server
-
 npm run dev
 
-
-👉 Opens at http://localhost:5173/
-
 4️⃣ Build for Production
-
 npm run build
 
 🌍 Deployment
-
 This project is deployed with Vercel.
 
+
 📌 Steps to deploy your own version:
-
 Push your project to GitHub
-
 Go to Vercel
  → Import your repository
-
+ 
 Set build command → npm run build
-
 Set output directory → dist
-
 Hit Deploy 🚀
 
 📬 Contact Me
-
 💡 Want to connect? Reach out!
 
 🔗 GitHub: @xelpaxu
-
-📧 Email: (add your email here)
-
-💼 LinkedIn: (add your LinkedIn if available)
+📧 Email: nuqui.axeljohn0815@gmail.com
 
 🛣️ Roadmap
 
 📱 Add mobile responsiveness
-
 🎞️ Add project demo videos & GIFs
-
 🎨 More animations and transitions
-
 🖤 Dark/Light mode toggle
