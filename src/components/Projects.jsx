@@ -65,7 +65,7 @@ const Projects = () => {
         { name: "CSS3", color: "text-sky-400 border-sky-400 shadow-sky-400/60" },
         { name: "WooCommerce", color: "text-purple-400 border-purple-400 shadow-purple-400/60" },
       ],
-      preview: "/YUHUM/index.html",   // ✅ Local HTML preview inside /public
+      preview: "/1st_year_website/index.html",   // ✅ Local HTML preview inside /public
       repo: "https://github.com/xelpaxu/YUHUM",
     },
     {
@@ -81,7 +81,7 @@ const Projects = () => {
         { name: "CSS3", color: "text-sky-400 border-sky-400 shadow-sky-400/60" },
         { name: "WooCommerce", color: "text-purple-400 border-purple-400 shadow-purple-400/60" },
       ],
-      preview: "/YUHUM/index.html",   // ✅ Local HTML preview inside /public
+      preview: "/1st_year_website/index.html", 
       repo: "https://github.com/xelpaxu/YUHUM",
     },
     {
@@ -97,7 +97,7 @@ const Projects = () => {
         { name: "CSS3", color: "text-sky-400 border-sky-400 shadow-sky-400/60" },
         { name: "WooCommerce", color: "text-purple-400 border-purple-400 shadow-purple-400/60" },
       ],
-      preview: "/YUHUM/index.html",   // ✅ Local HTML preview inside /public
+      preview: "/1st_year_website/index.html",
       repo: "https://github.com/xelpaxu/YUHUM",
     }
   ];
