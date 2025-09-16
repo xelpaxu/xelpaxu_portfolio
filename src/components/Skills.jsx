@@ -98,6 +98,28 @@ export default function Skills() {
           overflow: hidden;
           padding: 20px 0;
         }
+
+        /* fade masks on each row */
+        .skill-row::before,
+        .skill-row::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          width: 100px; /* width of fading zone */
+          height: 100%;
+          z-index: 15;
+          pointer-events: none;
+        }
+
+        .skill-row::before {
+          left: 0;
+          background: linear-gradient(to right, rgba(30,37,40,1), rgba(30,37,40,0));
+        }
+
+        .skill-row::after {
+          right: 0;
+          background: linear-gradient(to left, rgba(30,37,40,1), rgba(30,37,40,0));
+        }
         .marquee-track {
           display: flex;
           width: 200%; /* Important: ensures seamless loop */
@@ -114,8 +136,8 @@ export default function Skills() {
           will-change: transform, filter;
         }
         .skill-card:hover {
-          transform: translateY(-8px) scale(1.05) rotate(-1.5deg);
-          filter: drop-shadow(0 4px 14px var(--glow));
+          transform: translateY(-8px) scale(1.08) rotate(-1.5deg);
+          filter: drop-shadow(0 0 22px var(--glow)) drop-shadow(0 0 35px var(--glow));
         }
         @media (hover: none) {
           .skill-card:hover {

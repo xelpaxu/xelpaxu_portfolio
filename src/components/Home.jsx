@@ -1,4 +1,64 @@
+import React from 'react';
+
 export default function Home({ setActiveFile }) {
+  const [magnifierPos, setMagnifierPos] = React.useState({ x: 0, y: 0 });
+  const [showMagnifier, setShowMagnifier] = React.useState(false);
+  const magnifierRef = React.useRef({ x: 0, y: 0 });
+  const animationRef = React.useRef();
+
+  const updateMagnifierPosition = (e, codeBoxRect) => {
+    const targetX = e.clientX - codeBoxRect.left;
+    const targetY = e.clientY - codeBoxRect.top;
+    
+    const animate = () => {
+      const currentX = magnifierRef.current.x;
+      const currentY = magnifierRef.current.y;
+      
+      // Smooth interpolation with delay
+      const ease = 0.08;
+      const newX = currentX + (targetX - currentX) * ease;
+      const newY = currentY + (targetY - currentY) * ease;
+      
+      magnifierRef.current = { x: newX, y: newY };
+      setMagnifierPos({ x: newX, y: newY });
+      
+      // Continue animation if there's still significant movement
+      if (Math.abs(targetX - newX) > 0.5 || Math.abs(targetY - newY) > 0.5) {
+        animationRef.current = requestAnimationFrame(animate);
+      }
+    };
+    
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+    }
+    animationRef.current = requestAnimationFrame(animate);
+  };
+
+  const handleMouseMove = (e) => {
+    const codeBox = e.currentTarget;
+    const rect = codeBox.getBoundingClientRect();
+    updateMagnifierPosition(e, rect);
+  };
+
+  const handleMouseEnter = () => {
+    setShowMagnifier(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowMagnifier(false);
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+    }
+  };
+
+  React.useEffect(() => {
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className="relative h-full w-full flex items-center justify-center">
       <style>{`
@@ -37,6 +97,36 @@ export default function Home({ setActiveFile }) {
           pointer-events: none;
           z-index: 1;
         }
+        .magnifier {
+          position: absolute;
+          width: 150px;
+          height: 150px;
+          border: 3px solid rgba(78, 201, 176, 0.8);
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 100;
+          background: #23272e;
+          box-shadow: 
+            0 0 20px rgba(78, 201, 176, 0.4),
+            inset 0 0 20px rgba(0, 0, 0, 0.3);
+          overflow: hidden;
+          backdrop-filter: blur(0.5px);
+          transition: opacity 0.2s ease-in-out;
+        }
+        .magnifier-content {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) scale(2);
+          transform-origin: center;
+          width: 300px;
+          height: 300px;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 12px;
+          color: white;
+          line-height: 1.4;
+          overflow: hidden;
+        }
       `}</style>
 
       {/* Floating background code symbols */}
@@ -58,7 +148,54 @@ export default function Home({ setActiveFile }) {
       <div
         className="relative z-20 bg-[#23272e] text-white text-3xl font-bold flex items-center justify-center rounded shadow-lg border border-black border-opacity-30 rounded-t-xl"
         style={{ width: '33rem', height: '35rem', left: '17%', top: '14%', position: 'absolute' }}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
+        {/* Magnifier */}
+        {showMagnifier && (
+          <div
+            className="magnifier"
+            style={{
+              left: `${magnifierPos.x - 75}px`,
+              top: `${magnifierPos.y - 75}px`,
+              opacity: showMagnifier ? 1 : 0
+            }}
+          >
+            <div
+              className="magnifier-content"
+              style={{
+                transform: `translate(-50%, -50%) translate(${(150/2 - magnifierPos.x) * 2}px, ${(280 - magnifierPos.y) * 2}px) scale(2)`
+              }}
+            >
+              <div style={{ paddingLeft: '2.5rem', paddingTop: '1.5rem' }}>
+                <span className="block h-5 mb-1"><span style={{ color: "#c792ea" }}>const</span> HomePage = () =&gt; &#123;</span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;<span style={{ color: "#c792ea" }}>const</span> [<span style={{ color: "#dcdcaa" }}>isLoaded</span>, <span style={{ color: "#dcdcaa" }}>setIsLoaded</span>] = <span style={{ color: "#82aaff" }}>useState</span>(true);</span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;<span style={{ color: "#c792ea" }}>const</span> <span style={{ color: "#dcdcaa" }}>developerInfo</span> = &#123;</span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#7fdbca" }}>name</span>: <span style={{ color: "#ecc48d" }}>'axel john nuqui'</span>,</span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#7fdbca" }}>role</span>: <span style={{ color: "#ecc48d" }}>'backend dev'</span>,</span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#7fdbca" }}>bio</span>: <span style={{ color: "#ecc48d" }}>'turning complex logics into powerful solutions'</span></span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;&#125;;</span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;<span style={{ color: "#82aaff" }}>useEffect</span>(() =&gt; &#123;</span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;document.title = <span style={{ color: "#ecc48d" }}>&#96;&#36;&#123;developerInfo.name&#125; | Portfolio&#96;</span>;</span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#dcdcaa" }}>setIsLoaded</span>(true);</span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;&#125;, []);</span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;<span style={{ color: "#c792ea" }}>return</span> (</span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;main</span> className="hero-container"<span style={{ color: "#addb67" }}>&gt;</span></span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;h1&gt;</span>&#123;developerInfo.name&#125;<span style={{ color: "#addb67" }}>&lt;/h1&gt;</span></span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;p&gt;</span>&#123;developerInfo.role&#125;<span style={{ color: "#addb67" }}>&lt;/p&gt;</span></span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;div</span> className="cta"<span style={{ color: "#addb67" }}>&gt;</span></span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;Link</span> href="/projects"<span style={{ color: "#addb67" }}>&gt;</span>View Projects<span style={{ color: "#addb67" }}>&lt;/Link&gt;</span></span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;/div&gt;</span></span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;/main&gt;</span></span>
+                <span className="block h-5 mb-1">&nbsp;&nbsp;);</span>
+                <span className="block h-5 mb-1">&#125;;</span>
+                <span className="block h-5 mb-1"><span style={{ color: "#c792ea" }}>export default</span> HomePage;</span>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Line numbers */}
         <div className="absolute left-3 top-0 h-full flex flex-col items-end pr-5 pt-6 text-xs select-none"
           style={{ width: '2.5rem', fontFamily: 'JetBrains Mono, monospace', color: 'rgba(108, 118, 128, 0.5)' }}>
