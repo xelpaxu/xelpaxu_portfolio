@@ -48,7 +48,7 @@ const Projects = () => {
         { name: "Flet", color: "text-teal-400 border-teal-400 shadow-teal-400/60" },
         { name: "MariaDB", color: "text-blue-400 border-blue-400 shadow-blue-400/60" }
       ],
-      video: "https://youtu.be/4dCCRnqYmrQ",
+      video: "https://youtube.com/embed/Pxr7T5pMtMg", 
       repo: "https://github.com/xelpaxu/BIGBREW-POS",
     },
     {
