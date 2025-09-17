@@ -20,7 +20,7 @@ function App() {
     "projects.html": <Projects />,
     "contact.css": <Contact />,
     "skills.js": <Skills />,
-    "github.md": <div className="p-8 text-white">Github.md content</div>,
+    "github.md": <div className="p-8 text-white"><a href="https://github.com/xelpaxu/">My Github hehe</a></div>,
   };
 
   return (

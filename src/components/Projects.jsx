@@ -63,7 +63,7 @@ const Projects = () => {
         { name: "CSS", color: "text-orange-400 border-orange-400 shadow-orange-400/60" },
         { name: "Javascript", color: "text-sky-400 border-sky-400 shadow-sky-400/60" }
       ],
-      preview: "/1st_year_website/index.html",   // ✅ Local HTML preview inside /public
+      link_preview: "https://yuhum.vercel.app/",   // ✅ Local HTML preview inside /public
       repo: "https://github.com/xelpaxu/YUHUM",
     },
     {
@@ -78,7 +78,7 @@ const Projects = () => {
         { name: "Pygame", color: "text-orange-400 border-orange-400 shadow-orange-400/60" },
         { name: "DSA", color: "text-sky-400 border-sky-400 shadow-sky-400/60" }
       ],
-      preview: "/1st_year_website/index.html", 
+      link_preview: "https://yuhum.vercel.app/",  
       repo: "https://github.com/xelpaxu/YUHUM",
     },
     {
@@ -92,7 +92,7 @@ const Projects = () => {
         { name: "Java", color: "text-purple-400 border-purple-400 shadow-purple-400/60" },
         { name: "CLI", color: "text-orange-400 border-orange-400 shadow-orange-400/60" },
       ],
-      preview: "/1st_year_website/index.html",
+      link_preview: "https://yuhum.vercel.app/", 
       repo: "https://github.com/xelpaxu/YUHUM",
     }
   ];
@@ -175,7 +175,7 @@ const Projects = () => {
                   <button
                     onClick={() => {
                       setIsModalOpen(true);
-                      setPreviewUrl(project.preview || project.video);
+                      setPreviewUrl(project.link_preview || project.video);
                     }}
                     className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-slate-700 hover:bg-slate-600 text-slate-300 hover:text-white transition-all duration-300"
                   >
