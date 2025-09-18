@@ -3,8 +3,42 @@ import React from 'react';
 export default function Home({ setActiveFile }) {
   const [magnifierPos, setMagnifierPos] = React.useState({ x: 0, y: 0 });
   const [showMagnifier, setShowMagnifier] = React.useState(false);
+  const [isOverCodeBox, setIsOverCodeBox] = React.useState(false);
+  const [isOverCodeContent, setIsOverCodeContent] = React.useState(false);
   const magnifierRef = React.useRef({ x: 0, y: 0 });
   const animationRef = React.useRef();
+  const codeContentRef = React.useRef();
+  const codeBoxRef = React.useRef();
+  const magnifierContentRef = React.useRef();
+
+  // Use the actual code content for magnification
+  React.useEffect(() => {
+    if (showMagnifier && codeContentRef.current && magnifierContentRef.current) {
+      // Get the actual code content
+      const codeContent = codeContentRef.current;
+      
+      // Create a new div to hold the magnified content
+      const magnifiedContent = document.createElement('div');
+      magnifiedContent.style.position = 'absolute';
+      magnifiedContent.style.top = '0';
+      magnifiedContent.style.left = '0';
+      magnifiedContent.style.width = '300px';
+      magnifiedContent.style.height = '300px';
+      magnifiedContent.style.fontFamily = "'JetBrains Mono', monospace";
+      magnifiedContent.style.fontSize = '12px';
+      magnifiedContent.style.color = 'white';
+      magnifiedContent.style.lineHeight = '1.4';
+      magnifiedContent.style.overflow = 'hidden';
+      
+      // Clone the actual code content
+      const clone = codeContent.cloneNode(true);
+      magnifiedContent.appendChild(clone);
+      
+      // Clear previous content and add the new content
+      magnifierContentRef.current.innerHTML = '';
+      magnifierContentRef.current.appendChild(magnifiedContent);
+    }
+  }, [showMagnifier, magnifierPos]);
 
   const updateMagnifierPosition = (e, codeBoxRect) => {
     const targetX = e.clientX - codeBoxRect.left;
@@ -35,20 +69,32 @@ export default function Home({ setActiveFile }) {
   };
 
   const handleMouseMove = (e) => {
-    const codeBox = e.currentTarget;
-    const rect = codeBox.getBoundingClientRect();
-    updateMagnifierPosition(e, rect);
+    if (codeBoxRef.current) {
+      const rect = codeBoxRef.current.getBoundingClientRect();
+      updateMagnifierPosition(e, rect);
+    }
   };
 
-  const handleMouseEnter = () => {
-    setShowMagnifier(true);
+  const handleCodeBoxMouseEnter = () => {
+    setIsOverCodeBox(true);
   };
 
-  const handleMouseLeave = () => {
+  const handleCodeBoxMouseLeave = () => {
+    setIsOverCodeBox(false);
     setShowMagnifier(false);
     if (animationRef.current) {
       cancelAnimationFrame(animationRef.current);
     }
+  };
+
+  const handleCodeContentMouseEnter = () => {
+    setIsOverCodeContent(true);
+    setShowMagnifier(true);
+  };
+
+  const handleCodeContentMouseLeave = () => {
+    setIsOverCodeContent(false);
+    setShowMagnifier(false);
   };
 
   React.useEffect(() => {
@@ -58,6 +104,12 @@ export default function Home({ setActiveFile }) {
       }
     };
   }, []);
+
+  // Calculate magnifier content position
+  const paddingLeft = 40; // 2.5rem in pixels
+  const paddingTop = 24; // 1.5rem in pixels
+  const shiftX = 150 - (magnifierPos.x - paddingLeft) * 2;
+  const shiftY = 150 - (magnifierPos.y - paddingTop) * 2;
 
   return (
     <div className="relative h-full w-full flex items-center justify-center">
@@ -115,16 +167,10 @@ export default function Home({ setActiveFile }) {
         }
         .magnifier-content {
           position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%) scale(2);
-          transform-origin: center;
+          top: 0;
+          left: 0;
           width: 300px;
           height: 300px;
-          font-family: 'JetBrains Mono', monospace;
-          font-size: 12px;
-          color: white;
-          line-height: 1.4;
           overflow: hidden;
         }
       `}</style>
@@ -146,11 +192,12 @@ export default function Home({ setActiveFile }) {
 
       {/* Code editor box */}
       <div
+        ref={codeBoxRef}
         className="relative z-20 bg-[#23272e] text-white text-3xl font-bold flex items-center justify-center rounded shadow-lg border border-black border-opacity-30 rounded-t-xl"
         style={{ width: '33rem', height: '35rem', left: '17%', top: '14%', position: 'absolute' }}
         onMouseMove={handleMouseMove}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onMouseEnter={handleCodeBoxMouseEnter}
+        onMouseLeave={handleCodeBoxMouseLeave}
       >
         {/* Magnifier */}
         {showMagnifier && (
@@ -162,36 +209,14 @@ export default function Home({ setActiveFile }) {
               opacity: showMagnifier ? 1 : 0
             }}
           >
-            <div
+            <div 
+              ref={magnifierContentRef}
               className="magnifier-content"
               style={{
-                transform: `translate(-50%, -50%) translate(${(150/2 - magnifierPos.x) * 2}px, ${(280 - magnifierPos.y) * 2}px) scale(2)`
+                transform: `translate(${shiftX}px, ${shiftY}px) scale(2)`
               }}
             >
-              <div style={{ paddingLeft: '2.5rem', paddingTop: '1.5rem' }}>
-                <span className="block h-5 mb-1"><span style={{ color: "#c792ea" }}>const</span> HomePage = () =&gt; &#123;</span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;<span style={{ color: "#c792ea" }}>const</span> [<span style={{ color: "#dcdcaa" }}>isLoaded</span>, <span style={{ color: "#dcdcaa" }}>setIsLoaded</span>] = <span style={{ color: "#82aaff" }}>useState</span>(true);</span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;<span style={{ color: "#c792ea" }}>const</span> <span style={{ color: "#dcdcaa" }}>developerInfo</span> = &#123;</span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#7fdbca" }}>name</span>: <span style={{ color: "#ecc48d" }}>'axel john nuqui'</span>,</span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#7fdbca" }}>role</span>: <span style={{ color: "#ecc48d" }}>'backend dev'</span>,</span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#7fdbca" }}>bio</span>: <span style={{ color: "#ecc48d" }}>'turning complex logics into powerful solutions'</span></span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;&#125;;</span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;<span style={{ color: "#82aaff" }}>useEffect</span>(() =&gt; &#123;</span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;document.title = <span style={{ color: "#ecc48d" }}>&#96;&#36;&#123;developerInfo.name&#125; | Portfolio&#96;</span>;</span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#dcdcaa" }}>setIsLoaded</span>(true);</span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;&#125;, []);</span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;<span style={{ color: "#c792ea" }}>return</span> (</span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;main</span> className="hero-container"<span style={{ color: "#addb67" }}>&gt;</span></span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;h1&gt;</span>&#123;developerInfo.name&#125;<span style={{ color: "#addb67" }}>&lt;/h1&gt;</span></span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;p&gt;</span>&#123;developerInfo.role&#125;<span style={{ color: "#addb67" }}>&lt;/p&gt;</span></span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;div</span> className="cta"<span style={{ color: "#addb67" }}>&gt;</span></span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;Link</span> href="/projects"<span style={{ color: "#addb67" }}>&gt;</span>View Projects<span style={{ color: "#addb67" }}>&lt;/Link&gt;</span></span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;/div&gt;</span></span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;/main&gt;</span></span>
-                <span className="block h-5 mb-1">&nbsp;&nbsp;);</span>
-                <span className="block h-5 mb-1">&#125;;</span>
-                <span className="block h-5 mb-1"><span style={{ color: "#c792ea" }}>export default</span> HomePage;</span>
-              </div>
+              {/* This will be populated with the actual code content */}
             </div>
           </div>
         )}
@@ -213,37 +238,42 @@ export default function Home({ setActiveFile }) {
           }} 
         />
 
-        {/* Code inside editor */}
+        {/* Code inside editor - This is where the magnifier should work */}
         <div
-          className="pl-10 pt-0 w-full relative z-10"
+          ref={codeContentRef}
+          className="pl-2 pt-0 w-full relative z-10"
           style={{
             fontFamily: "JetBrains Mono, monospace",
             fontWeight: 100,
             fontSize: "12px",
           }}
+          onMouseEnter={handleCodeContentMouseEnter}
+          onMouseLeave={handleCodeContentMouseLeave}
         >
-          <span className="block h-5 mb-1"><span style={{ color: "#c792ea" }}>const</span> HomePage = () =&gt; &#123;</span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;<span style={{ color: "#c792ea" }}>const</span> [<span style={{ color: "#dcdcaa" }}>isLoaded</span>, <span style={{ color: "#dcdcaa" }}>setIsLoaded</span>] = <span style={{ color: "#82aaff" }}>useState</span>(true);</span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;<span style={{ color: "#c792ea" }}>const</span> <span style={{ color: "#dcdcaa" }}>developerInfo</span> = &#123;</span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#7fdbca" }}>name</span>: <span style={{ color: "#ecc48d" }}>'axel john nuqui'</span>,</span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#7fdbca" }}>role</span>: <span style={{ color: "#ecc48d" }}>'backend dev'</span>,</span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#7fdbca" }}>bio</span>: <span style={{ color: "#ecc48d" }}>'turning complex logics into powerful solutions'</span></span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;&#125;;</span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;<span style={{ color: "#82aaff" }}>useEffect</span>(() =&gt; &#123;</span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;document.title = <span style={{ color: "#ecc48d" }}>&#96;&#36;&#123;developerInfo.name&#125; | Portfolio&#96;</span>;</span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#dcdcaa" }}>setIsLoaded</span>(true);</span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;&#125;, []);</span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;<span style={{ color: "#c792ea" }}>return</span> (</span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;main</span> className="hero-container"<span style={{ color: "#addb67" }}>&gt;</span></span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;h1&gt;</span>&#123;developerInfo.name&#125;<span style={{ color: "#addb67" }}>&lt;/h1&gt;</span></span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;p&gt;</span>&#123;developerInfo.role&#125;<span style={{ color: "#addb67" }}>&lt;/p&gt;</span></span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;div</span> className="cta"<span style={{ color: "#addb67" }}>&gt;</span></span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;Link</span> href="/projects"<span style={{ color: "#addb67" }}>&gt;</span>View Projects<span style={{ color: "#addb67" }}>&lt;/Link&gt;</span></span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;/div&gt;</span></span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;/main&gt;</span></span>
-          <span className="block h-5 mb-1">&nbsp;&nbsp;);</span>
-          <span className="block h-5 mb-1">&#125;;</span>
-          <span className="block h-5 mb-1"><span style={{ color: "#c792ea" }}>export default</span> HomePage;</span>
+          <div style={{ paddingLeft: '2.5rem'}}>
+            <span className="block h-5 mb-1"><span style={{ color: "#c792ea" }}>const</span> HomePage = () =&gt; &#123;</span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;<span style={{ color: "#c792ea" }}>const</span> [<span style={{ color: "#dcdcaa" }}>isLoaded</span>, <span style={{ color: "#dcdcaa" }}>setIsLoaded</span>] = <span style={{ color: "#82aaff" }}>useState</span>(true);</span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;<span style={{ color: "#c792ea" }}>const</span> <span style={{ color: "#dcdcaa" }}>developerInfo</span> = &#123;</span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#7fdbca" }}>name</span>: <span style={{ color: "#ecc48d" }}>'axel john nuqui'</span>,</span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#7fdbca" }}>role</span>: <span style={{ color: "#ecc48d" }}>'backend dev'</span>,</span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#7fdbca" }}>bio</span>: <span style={{ color: "#ecc48d" }}>'turning complex logics into powerful solutions'</span></span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;&#125;;</span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;<span style={{ color: "#82aaff" }}>useEffect</span>(() =&gt; &#123;</span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;document.title = <span style={{ color: "#ecc48d" }}>&#96;&#36;&#123;developerInfo.name&#125; | Portfolio&#96;</span>;</span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#dcdcaa" }}>setIsLoaded</span>(true);</span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;&#125;, []);</span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;<span style={{ color: "#c792ea" }}>return</span> (</span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;main</span> className="hero-container"<span style={{ color: "#addb67" }}>&gt;</span></span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;h1&gt;</span>&#123;developerInfo.name&#125;<span style={{ color: "#addb67" }}>&lt;/h1&gt;</span></span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;p&gt;</span>&#123;developerInfo.role&#125;<span style={{ color: "#addb67" }}>&lt;/p&gt;</span></span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;div</span> className="cta"<span style={{ color: "#addb67" }}>&gt;</span></span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;Link</span> href="/projects"<span style={{ color: "#addb67" }}>&gt;</span>View Projects<span style={{ color: "#addb67" }}>&lt;/Link&gt;</span></span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;/div&gt;</span></span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "#addb67" }}>&lt;/main&gt;</span></span>
+            <span className="block h-5 mb-1">&nbsp;&nbsp;);</span>
+            <span className="block h-5 mb-1">&#125;;</span>
+            <span className="block h-5 mb-1"><span style={{ color: "#c792ea" }}>export default</span> HomePage;</span>
+          </div>
         </div>
 
         {/* Hero content */}
