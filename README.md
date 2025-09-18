@@ -1,6 +1,12 @@
-Portfolio – XELPAXU
+Axel John E. Nuqui - PORTFOLIO
 
-Modern, minimal, and performance-oriented personal portfolio showcasing projects, skills, and contact information. Built with React, Vite, and Tailwind CSS.
+![Logo](public/landing_page.png)
+
+**[Live Demo](https://xelpaxu-portfolio.vercel.app)**
+
+<hr style="border: none; height: 2px; background: black;">
+
+**PROJECT INFORMATION**
 
 Features
 
