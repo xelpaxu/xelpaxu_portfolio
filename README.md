@@ -1,80 +1,98 @@
-🌐 XELPAXU Portfolio
+Portfolio – XELPAXU
 
-A personal portfolio website built with React, Vite, and Tailwind CSS.
-This project serves as a professional showcase for my projects, skills, and experience.
+Modern, minimal, and performance-oriented personal portfolio showcasing projects, skills, and contact information. Built with React, Vite, and Tailwind CSS.
 
-⚠️ Note: The website is not yet responsive. It currently works best on desktop view, and mobile responsiveness will be added soon.
+Features
 
-✨ Features
+Home
 
-✅ Clean & Modern UI – Minimal design with smooth hover animations
-✅ Fast Performance – Powered by Vite for instant builds
-✅ Projects Showcase – Interactive project cards with previews & GitHub links
-✅ Contact Section – Simple and elegant way to reach me
-✅ Tailwind Styling – Consistent, scalable, and utility-first CSS
+Top navigation with anchor links to key sections.
 
-🖥️ Tech Stack
+Tagline, social links, and a call-to-action button.
 
-⚛️ Frontend Framework: React
-⚡ Build Tool: Vite
-🎨 Styling: Tailwind CSS
-🎭 Icons & UI: React Icons
-🚀 Deployment: Vercel
+Projects
 
-📂 Project Structure
-portfolio/
-├── public/              → Static assets (images, previews, favicon, etc.)
-├── src/
-│   ├── components/      → Reusable UI components
-│   ├── sections/        → Page sections (Home, Projects, Contact, etc.)
-│   ├── App.jsx          → Main app component
-│   ├── main.jsx         → Entry point
-│   └── index.css        → Global styles
-├── package.json
-├── tailwind.config.js
-└── vite.config.js
+Interactive project cards with previews and GitHub links.
 
-🚀 Getting Started
+Hover animations and smooth transitions.
 
-To run this project locally:
+Contact
 
-1️⃣ Clone the Repository
-git clone https://github.com/xelpaxu/portfolio.git
-cd portfolio
+Simple, elegant section with email and social links.
 
+Styling & UX
 
-2️⃣ Install Dependencies
+Tailwind CSS for scalable, utility-first styling.
+
+Smooth hover animations and transitions.
+
+Desktop-first design (mobile responsiveness coming soon).
+
+Performance
+
+Vite for instant builds and optimized production output.
+
+Tech Stack
+
+Build Tooling: Vite
+
+UI/Styling: Tailwind CSS
+
+Framework: React
+
+Icons & UI: React Icons
+
+Deployment: Vercel
+
+Project Structure
+.
+├─ public/                 # Static assets (images, previews, favicon, etc.)
+├─ src/
+│  ├─ components/          # Reusable UI components
+│  ├─ sections/            # Page sections (Home, Projects, Contact, etc.)
+│  ├─ App.jsx              # Main app component
+│  ├─ main.jsx             # React entry point
+│  └─ index.css            # Global styles
+├─ package.json
+├─ tailwind.config.js
+├─ vite.config.js
+└─ dist/                   # Production build output
+
+Prerequisites
+
+Node.js 18+ (recommended)
+
+Getting Started
+
+Install dependencies:
+
 npm install
 
 
-3️⃣ Run Development Server
+Run in development:
+
 npm run dev
 
-4️⃣ Build for Production
+
+Then open the local URL printed by Vite.
+
+Build for production:
+
 npm run build
 
-🌍 Deployment
-This project is deployed with Vercel.
 
+Preview the production build locally:
 
-📌 Steps to deploy your own version:
-Push your project to GitHub
-Go to Vercel
- → Import your repository
- 
-Set build command → npm run build
-Set output directory → dist
-Hit Deploy 🚀
+npm run preview
 
-📬 Contact Me
-💡 Want to connect? Reach out!
+Key Files to Explore
 
-🔗 GitHub: @xelpaxu
-📧 Email: nuqui.axeljohn0815@gmail.com
+src/components/ – Reusable UI pieces (buttons, cards, etc.)
 
-🛣️ Roadmap
+src/sections/ – Page sections such as Home, Projects, and Contact
 
-📱 Add mobile responsiveness
-🎞️ Add project demo videos & GIFs
-🎨 More animations and transitions
-🖤 Dark/Light mode toggle
+src/App.jsx – Main application structure
+
+tailwind.config.js – Tailwind configuration and theme customization
+
+vite.config.js – Vite build settings
