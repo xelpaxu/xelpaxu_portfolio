@@ -7,7 +7,7 @@
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
-🔗 **[🌍 Live Demo](https://xelpaxu-portfolio.vercel.app)**
+🔗 **#[🌍 Live Demo](https://xelpaxu-portfolio.vercel.app)**
 
 ---
 
@@ -15,8 +15,10 @@
 
 ### ✨ Features
 - **Home**
-  - Top navigation with anchor links to key sections  
-  - Tagline, social links, and a **call-to-action button**  
+  - **Code-like** editor with basic descriptions of the owner
+  - **Magnifying glass** on codes
+  - **Blinking and glow effects** on texts
+  - A **functioning terminal** with predefined codes for navigation
 
 - **Projects**
   - Interactive project cards with **previews and GitHub links**  
@@ -70,18 +72,23 @@
 
 ---
 
-## 🚀 **Getting Started**
+## 🚀 **Run this on your device**
 
-🔹 **Install dependencies**
+🔹 **CLONE GITHUB LINK**
+```bash
+git clone https://github.com/xelpaxu/xelpaxu_portfolio.git
+```
+🔹 **Install Dependencies**
 ```bash
 npm install
 ```
+🔹 **Run Local Host**
+
 ```bash
 npm run dev
 ```
-```bash
-npm run build
-```
+
+🔹 **Run Preview**
 ```bash
 npm run preview
 ```
