@@ -1,95 +1,87 @@
-Axel John E. Nuqui - PORTFOLIO
+# 🚀 Axel John E. Nuqui — **PORTFOLIO**
 
-![Logo](public/landing_page.png)
+![Portfolio Preview](public/landing_page.png)
 
-**[Live Demo](https://xelpaxu-portfolio.vercel.app)**
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
-<hr style="border: none; height: 2px; background: black;">
+🔗 **[🌍 Live Demo](https://xelpaxu-portfolio.vercel.app)**
 
-**PROJECT INFORMATION**
+---
 
-Features
+## 📌 **Project Information**
 
-- Home
-Top navigation with anchor links to key sections
+### ✨ Features
+- **Home**
+  - Top navigation with anchor links to key sections  
+  - Tagline, social links, and a **call-to-action button**  
 
-Tagline, social links, and a call-to-action button
+- **Projects**
+  - Interactive project cards with **previews and GitHub links**  
+  - **Hover animations** and smooth transitions  
 
-- Projects
+- **Contact**
+  - Simple, elegant section with **email and social links**  
 
-Interactive project cards with previews and GitHub links
+---
 
-Hover animations and smooth transitions
+### 🎨 Styling & UX
+- **Tailwind CSS** → Scalable, utility-first styling  
+- **Smooth hover animations** and **transitions**  
+- **Desktop-first design** *(mobile responsiveness coming soon)*  
 
-- Contact
+---
 
-Simple, elegant section with email and social links
+### ⚡ Performance
+- **Vite** → Instant builds and optimized production output  
 
-Styling & UX
-Tailwind CSS for scalable, utility-first styling
-Smooth hover animations and transitions
-Desktop-first design (mobile responsiveness coming soon)
-Performance
-Vite for instant builds and optimized production output
+---
 
-- Tech Stack
+### 🛠️ Tech Stack
+- **Build Tooling:** Vite  
+- **UI/Styling:** Tailwind CSS  
+- **Framework:** React  
+- **Icons & UI:** React Icons  
+- **Deployment:** Vercel  
 
-Build Tooling: Vite
-UI/Styling: Tailwind CSS
-Framework: React
-Icons & UI: React Icons
-Deployment: Vercel
+---
 
-
-Project Structure
+## 📂 **Project Structure**
 ```
 .
-├─ public/                 # Static assets (images, previews, favicon, etc.)
+├─ public/ # Static assets (images, previews, favicon, etc.)
 ├─ src/
-│  ├─ components/          # Reusable UI components
-│  ├─ sections/            # Page sections (Home, Projects, Contact, etc.)
-│  ├─ App.jsx              # Main app component
-│  ├─ main.jsx             # React entry point
-│  └─ index.css            # Global styles
+│ ├─ components/ # Reusable UI components
+│ ├─ App.jsx # Main app component
+│ ├─ main.jsx # React entry point
+│ └─ index.css # Global styles
 ├─ package.json
 ├─ tailwind.config.js
 ├─ vite.config.js
-└─ dist/                   # Production build output
+└─ dist/ # Production build output
 ```
 
-Prerequisites
+---
 
-Node.js 18+ (recommended)
+## ⚙️ **Prerequisites**
+- **Node.js 18+ (recommended)**  
 
-Getting Started
+---
 
-Install dependencies:
-```
+## 🚀 **Getting Started**
+
+🔹 **Install dependencies**
+```bash
 npm install
 ```
-
-Run in development:
-```
+```bash
 npm run dev
 ```
-
-Then open the local URL printed by Vite.
-
-Build for production:
-```
+```bash
 npm run build
 ```
-
-Preview the production build locally:
-```
+```bash
 npm run preview
-```
-
-Key Files to Explore
-```
-src/components/ – Reusable UI pieces (buttons, cards, etc.)
-src/sections/ – Page sections such as Home, Projects, and Contact
-src/App.jsx – Main application structure
-tailwind.config.js – Tailwind configuration and theme customization
-vite.config.js – Vite build settings
 ```
