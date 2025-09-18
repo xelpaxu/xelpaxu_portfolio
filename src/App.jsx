@@ -7,6 +7,7 @@ import Home from "./components/Home.jsx";
 import Projects from "./components/Projects.jsx";
 import Skills from "./components/Skills.jsx";
 import Contact from "./components/Contact.jsx";
+import Github from "./components/Github.jsx"; // Import the new GitHub component
 import { useState } from "react";
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
     "projects.html": <Projects />,
     "contact.css": <Contact />,
     "skills.js": <Skills />,
-    "github.md": <div className="p-8 text-white"><a href="https://github.com/xelpaxu/">My Github hehe</a></div>,
+    "github.md": <Github />
   };
 
   return (
@@ -30,7 +31,7 @@ function App() {
         setSearchOpen={setSearchOpen} 
         setTerminalOpen={setTerminalOpen}
         terminalOpen={terminalOpen}
-        setActiveFile={setActiveFile}  // Add this line
+        setActiveFile={setActiveFile}
       />
 
       <div className="flex flex-1 overflow-hidden">
