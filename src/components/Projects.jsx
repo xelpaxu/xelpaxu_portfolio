@@ -78,7 +78,7 @@ const Projects = () => {
         { name: "Pygame", color: "text-orange-400 border-orange-400 shadow-orange-400/60" },
         { name: "DSA", color: "text-sky-400 border-sky-400 shadow-sky-400/60" }
       ],
-      link_preview: "https://yuhum.vercel.app/",  
+      link_preview: "https://www.youtube.com/embed/ab03I3ExfAk",  
       repo: "https://github.com/xelpaxu/YUHUM",
     },
     {
